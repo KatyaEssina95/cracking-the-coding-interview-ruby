@@ -25,4 +25,10 @@ class TestArraysAndStrings < Minitest::Test
     str_2 = "cccddd"
     refute is_permutation? str_1, str_2
   end
+
+  def test_urlify
+    string_with_spaces = " This  string has      spaces"
+    url = string_with_spaces.gsub! " ", "%20"
+    assert_equal urlify(string_with_spaces), url
+  end
 end

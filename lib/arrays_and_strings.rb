@@ -37,3 +37,23 @@ def is_permutation?(str_1, str_2)
 
   str_1.chars.sort == str_2.chars.sort
 end
+
+def urlify(string_with_spaces)
+  number_of_spaces = string_with_spaces.count ' '
+  string_array = string_with_spaces.chars
+  new_index = string_with_spaces.length - 1 + 2*number_of_spaces
+  old_index = string_with_spaces.length - 1
+  while new_index >= 0 do
+    if string_array[old_index] == " "
+      string_array[new_index] = "0"
+      string_array[new_index-1] = "2"
+      string_array[new_index-2] = "%"
+      new_index -= 3
+    else
+      string_array[new_index] = string_array[old_index]
+      new_index -= 1
+    end
+    old_index -= 1
+  end
+  string_array.join
+end
