@@ -13,6 +13,7 @@ end
 
 def string_has_unique_chars_no_structures?(test_string)
   # 2 pointers - 1 current letter & one checking the rest of the string
+  # alternative solution - sort & check neighbour
   current_index = 0
   compare_index = 1
   while current_index < test_string.length - 1 do
@@ -27,4 +28,12 @@ def string_has_unique_chars_no_structures?(test_string)
     compare_index = current_index + 1
   end
   true
+end
+
+def is_permutation?(str_1, str_2)
+  if str_1.length != str_2.length
+    return false
+  end
+
+  str_1.chars.sort == str_2.chars.sort
 end

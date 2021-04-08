@@ -13,4 +13,16 @@ class TestArraysAndStrings < Minitest::Test
     refute string_has_unique_chars? non_unique_chars_string
     refute string_has_unique_chars_no_structures? non_unique_chars_string
   end
+
+  def test_is_permutation
+    str_1 = "abcdefg"
+    str_2 = "gfedcba"
+    assert is_permutation? str_1, str_2
+  end
+
+  def test_is_not_permutation
+    str_1 = "aaabbb"
+    str_2 = "cccddd"
+    refute is_permutation? str_1, str_2
+  end
 end
