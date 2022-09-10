@@ -1,0 +1,100 @@
+require_relative "../test_helper"
+require "arrays_and_strings/string_problem"
+
+class StringsTest < Minitest::Test
+  def setup
+    @problem = StringProblem.new
+  end
+
+  def test_has_unique_chars_is_true
+    string = "abcdefghijk"
+
+    assert @problem.has_unique_chars?(string)
+    assert @problem.has_unique_chars_no_structures?(string)
+  end
+
+  def test_has_unique_chars_is_false
+    string = "aaaaabbbbbbccccccc"
+
+    refute @problem.has_unique_chars?(string)
+    refute @problem.has_unique_chars_no_structures?(string)
+  end
+
+  def test_is_permutation_is_true
+    string = "abcdefg"
+    permutation = "gfedcba"
+
+    assert @problem.is_permutation? string, permutation
+  end
+
+  def test_is_permutation_is_false
+    string = "aaabbb"
+    permutation = "cccddd"
+
+    refute @problem.is_permutation? string, permutation
+  end
+
+  def test_urlify
+    string = " This  string has      spaces"
+
+    assert_equal string.gsub!(" ", "%20"), @problem.urlify(string)
+  end
+
+  def test_urlify_no_spaces
+    string = "string"
+
+    assert_equal string, @problem.urlify(string)
+  end
+
+  def test_is_palindrome_is_true
+    palindrome = "taco cat"
+
+    assert @problem.is_palindrome? palindrome
+  end
+
+  def test_is_palindrome_is_false
+    not_palindrome = "another taco cat"
+
+    refute @problem.is_palindrome? not_palindrome
+  end
+
+  def test_is_one_away_remove
+    string_1 = "pale"
+    string_2 = "ple"
+
+    assert @problem.is_one_away? string_1, string_2
+  end
+
+  def test_is_one_away_add
+    string_1 = "pales"
+    string_2 = "pale"
+
+    assert @problem.is_one_away? string_1, string_2
+  end
+
+  def test_is_one_away_replace
+    string_1 = "pale"
+    string_2 = "bale"
+
+    assert @problem.is_one_away? string_1, string_2
+  end
+
+  def test_is_than_one_away_is_false
+    string_1 = "pale"
+    string_2 = "bake"
+
+    assert @problem.is_one_away? string_1, string_2
+  end
+
+  def test_compress_string_shorter
+    string_to_compress = "aabcccccaaaa"
+    compressed_string = "a2b1c5a4"
+
+    assert_equal compressed_string, @problem.compress_string(string_to_compress)
+  end
+
+  def test_compress_string_longer
+    string_to_compress = "abcda"
+    assert_equal string_to_compress, @problem.compress_string(string_to_compress)
+  end
+end
