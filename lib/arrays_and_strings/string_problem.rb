@@ -85,9 +85,7 @@ class StringProblem
 
   # 1.5
   def is_one_away?(string_1, string_2)
-    if (string_1.length - string_2.length).abs > 1
-      return false
-    end
+    return false if (string_1.length - string_2.length).abs > 1
 
     if string_1.length >= string_2.length
       long_string = string_1
@@ -118,23 +116,72 @@ class StringProblem
   end
 
   # 1.6
-  def compress_string(string_to_compress)
+  def compress_string(string)
     output_array = []
     pointer = 0
-    while pointer < string_to_compress.length do
-      current_letter = string_to_compress[pointer]
+    while pointer < string.length do
+      current_letter = string[pointer]
       letter_count = 0
-      while string_to_compress[pointer] == current_letter && pointer < string_to_compress.length  do
+      while string[pointer] == current_letter && pointer < string.length  do
         letter_count += 1
         pointer += 1
       end
       output_array << current_letter
       output_array << letter_count
 
-      if output_array.length > string_to_compress.length
-        return string_to_compress
+      if output_array.length > string.length
+        return string
       end
     end
-    return output_array.join
+    output_array.join
+  end
+
+  # 1.7
+  def rotate_matrix(matrix)
+    # example matrix
+    # [1, 2, 3, 4]
+    # [5, 6, 7, 8]
+    # [9, 10, 11, 12]
+    # [13, 14, 15, 16]
+    #
+    # rotated:
+    # [13 9 5 1]
+    # [14 10 6 2]
+    # [15 11 7 3]
+    # [16 12 8 4]
+
+    # Evaluate one layer at a time
+    # For each element in the top row, rotate through the matrix,
+    # rotating elements that are being replaced
+
+    matrix_width = matrix[0].length
+    layers = (matrix_width / 2).floor
+    (0..layers - 1).each do |layer|
+      # n is the number of elements in each side of the layer square - 1
+      # E.g. for a 4 x 4 matrix, layer 0: n=3, layer 1: n=1
+      n = matrix_width - 2 * layer - 1
+      top_row = matrix[layer][layer..layer + n - 1] # Elements to initiate rotation
+      top_row.each_with_index do |element, index|
+        # Rotate element from top horizontal side to right vertical
+        placing = element
+        replacing = matrix[layer + index][layer + n]
+        matrix[layer + index][layer + n] = placing
+
+        # Rotate element from right vertical to bottom horizontal
+        placing = replacing
+        replacing = matrix[layer + n][layer + n - index]
+        matrix[layer + n][layer + n - index] = placing
+
+        # Rotate element from bottom horizontal to left vertical
+        placing = replacing
+        replacing = matrix[layer + n - index][layer]
+        matrix[layer + n - index][layer] = placing
+
+        # Rotate element from left vertical to top horizontal
+        placing = replacing
+        matrix[layer][layer + index] = placing
+      end
+    end
+    matrix
   end
 end
