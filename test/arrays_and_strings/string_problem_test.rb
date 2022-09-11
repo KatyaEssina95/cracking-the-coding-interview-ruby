@@ -154,4 +154,25 @@ class StringsTest < Minitest::Test
     ]
     assert_equal zero_matrix, @problem.zero_matrix(matrix)
   end
+
+  def test_is_rotation_different_lengths
+    string_1 = "cat"
+    string_2 = "cats"
+
+    refute @problem.is_rotation?(string_1, string_2)
+  end
+
+  def test_is_rotation_is_true
+    string_1 = "melon"
+    string_2 = "lonme"
+
+    assert @problem.is_rotation?(string_1, string_2)
+  end
+
+  def test_is_rotation_is_false
+    string_1 = "melon"
+    string_2 = "elnom"
+
+    refute @problem.is_rotation?(string_1, string_2)
+  end
 end

@@ -202,4 +202,12 @@ class StringProblem
     end
     matrix
   end
+
+  # 1.9
+  def is_rotation?(string_1, string_2)
+    return false unless string_1.length == string_2.length
+
+    concat_string_1 = "#{string_1}#{string_1}"
+    concat_string_1.include? string_2
+  end
 end
