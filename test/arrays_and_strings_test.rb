@@ -1,9 +1,9 @@
-require_relative "../test_helper"
-require "arrays_and_strings/string_problem"
+require_relative "test_helper"
+require "arrays_and_strings"
 
-class StringsTest < Minitest::Test
+class ArraysAndStringsTest < Minitest::Test
   def setup
-    @problem = StringProblem.new
+    @problem = ArraysAndStrings.new
   end
 
   def test_has_unique_chars_is_true

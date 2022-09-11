@@ -1,4 +1,4 @@
-class StringProblem
+class ArraysAndStrings
   # 1.1
   def has_unique_chars?(string)
     # use a hash to keep track of seen chars
