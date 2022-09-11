@@ -129,4 +129,29 @@ class StringsTest < Minitest::Test
     ]
     assert_equal rotated_matrix, @problem.rotate_matrix(matrix)
   end
+
+  def test_zero_matrix_no_zeros
+    matrix = [
+      [1, 2],
+      [3, 4],
+      [5, 6]
+    ]
+
+    assert_equal matrix, @problem.zero_matrix(matrix)
+  end
+
+  def test_zero_matrix
+    matrix = [
+      [1, 0],
+      [3, 4],
+      [5, 6]
+    ]
+
+    zero_matrix = [
+      [0, 0],
+      [3, 0],
+      [5, 0]
+    ]
+    assert_equal zero_matrix, @problem.zero_matrix(matrix)
+  end
 end

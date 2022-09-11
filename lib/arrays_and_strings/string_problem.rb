@@ -184,4 +184,22 @@ class StringProblem
     end
     matrix
   end
+
+  # 1.8
+  def zero_matrix(matrix)
+    # Matrix M X N
+    zero_columns = Set.new
+    width = matrix[0].length
+    matrix.each_with_index do |row, row_index|
+      row.each_with_index do |element, column_index|
+        if element == 0 && !zero_columns.include?(column_index)
+          matrix[row_index] = [0] * width  # Set row to 0s
+          matrix.each { |row| row[column_index] = 0 }  # Set column to 0s
+          zero_columns.add(column_index) # Don't miscount a zero column for a real 0
+          break # Stop iterating row
+        end
+      end
+    end
+    matrix
+  end
 end
