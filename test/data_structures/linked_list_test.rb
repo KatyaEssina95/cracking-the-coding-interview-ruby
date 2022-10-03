@@ -1,5 +1,5 @@
 require_relative "../test_helper"
-require "linked_lists/linked_list"
+require "data_structures/linked_list"
 
 class LinkedListTest < Minitest::Test
   def setup

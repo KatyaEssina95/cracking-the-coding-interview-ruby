@@ -1,5 +1,5 @@
-require_relative "test_helper"
-require "arrays_and_strings_problems"
+require_relative "../test_helper"
+require "problems/arrays_and_strings_problems"
 
 class ArraysAndStringsProblemsTest < Minitest::Test
   include ArraysAndStringsProblems
