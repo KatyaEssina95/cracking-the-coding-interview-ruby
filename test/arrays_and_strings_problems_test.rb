@@ -1,101 +1,99 @@
 require_relative "test_helper"
-require "arrays_and_strings"
+require "arrays_and_strings_problems"
 
-class ArraysAndStringsTest < Minitest::Test
-  def setup
-    @problem = ArraysAndStrings.new
-  end
+class ArraysAndStringsProblemsTest < Minitest::Test
+  include ArraysAndStringsProblems
 
   def test_has_unique_chars_is_true
     string = "abcdefghijk"
 
-    assert @problem.has_unique_chars?(string)
-    assert @problem.has_unique_chars_no_structures?(string)
+    assert has_unique_chars?(string)
+    assert has_unique_chars_no_structures?(string)
   end
 
   def test_has_unique_chars_is_false
     string = "aaaaabbbbbbccccccc"
 
-    refute @problem.has_unique_chars?(string)
-    refute @problem.has_unique_chars_no_structures?(string)
+    refute has_unique_chars?(string)
+    refute has_unique_chars_no_structures?(string)
   end
 
   def test_is_permutation_is_true
     string = "abcdefg"
     permutation = "gfedcba"
 
-    assert @problem.is_permutation? string, permutation
+    assert is_permutation? string, permutation
   end
 
   def test_is_permutation_is_false
     string = "aaabbb"
     permutation = "cccddd"
 
-    refute @problem.is_permutation? string, permutation
+    refute is_permutation? string, permutation
   end
 
   def test_urlify
     string = " This  string has      spaces"
 
-    assert_equal string.gsub!(" ", "%20"), @problem.urlify(string)
+    assert_equal string.gsub!(" ", "%20"), urlify(string)
   end
 
   def test_urlify_no_spaces
     string = "string"
 
-    assert_equal string, @problem.urlify(string)
+    assert_equal string, urlify(string)
   end
 
   def test_is_palindrome_is_true
     palindrome = "taco cat"
 
-    assert @problem.is_palindrome? palindrome
+    assert is_palindrome? palindrome
   end
 
   def test_is_palindrome_is_false
     not_palindrome = "another taco cat"
 
-    refute @problem.is_palindrome? not_palindrome
+    refute is_palindrome? not_palindrome
   end
 
   def test_is_one_away_remove
     string_1 = "pale"
     string_2 = "ple"
 
-    assert @problem.is_one_away? string_1, string_2
+    assert is_one_away? string_1, string_2
   end
 
   def test_is_one_away_add
     string_1 = "pales"
     string_2 = "pale"
 
-    assert @problem.is_one_away? string_1, string_2
+    assert is_one_away? string_1, string_2
   end
 
   def test_is_one_away_replace
     string_1 = "pale"
     string_2 = "bale"
 
-    assert @problem.is_one_away? string_1, string_2
+    assert is_one_away? string_1, string_2
   end
 
   def test_is_than_one_away_is_false
     string_1 = "pale"
     string_2 = "bake"
 
-    refute @problem.is_one_away? string_1, string_2
+    refute is_one_away? string_1, string_2
   end
 
   def test_compress_string_shorter
     string_to_compress = "aabcccccaaaa"
     compressed_string = "a2b1c5a4"
 
-    assert_equal compressed_string, @problem.compress_string(string_to_compress)
+    assert_equal compressed_string, compress_string(string_to_compress)
   end
 
   def test_compress_string_longer
     string_to_compress = "abcda"
-    assert_equal string_to_compress, @problem.compress_string(string_to_compress)
+    assert_equal string_to_compress, compress_string(string_to_compress)
   end
 
   def test_rotate_matrix_even
@@ -112,7 +110,7 @@ class ArraysAndStringsTest < Minitest::Test
       [15, 11, 7, 3],
       [16, 12, 8, 4]
     ]
-    assert_equal rotated_matrix, @problem.rotate_matrix(matrix)
+    assert_equal rotated_matrix, rotate_matrix(matrix)
   end
 
   def test_rotate_matrix_odd
@@ -127,7 +125,7 @@ class ArraysAndStringsTest < Minitest::Test
       [8, 5, 2],
       [9, 6, 3]
     ]
-    assert_equal rotated_matrix, @problem.rotate_matrix(matrix)
+    assert_equal rotated_matrix, rotate_matrix(matrix)
   end
 
   def test_zero_matrix_no_zeros
@@ -137,7 +135,7 @@ class ArraysAndStringsTest < Minitest::Test
       [5, 6]
     ]
 
-    assert_equal matrix, @problem.zero_matrix(matrix)
+    assert_equal matrix, zero_matrix(matrix)
   end
 
   def test_zero_matrix
@@ -152,27 +150,27 @@ class ArraysAndStringsTest < Minitest::Test
       [3, 0],
       [5, 0]
     ]
-    assert_equal zero_matrix, @problem.zero_matrix(matrix)
+    assert_equal zero_matrix, zero_matrix(matrix)
   end
 
   def test_is_rotation_different_lengths
     string_1 = "cat"
     string_2 = "cats"
 
-    refute @problem.is_rotation?(string_1, string_2)
+    refute is_rotation?(string_1, string_2)
   end
 
   def test_is_rotation_is_true
     string_1 = "melon"
     string_2 = "lonme"
 
-    assert @problem.is_rotation?(string_1, string_2)
+    assert is_rotation?(string_1, string_2)
   end
 
   def test_is_rotation_is_false
     string_1 = "melon"
     string_2 = "elnom"
 
-    refute @problem.is_rotation?(string_1, string_2)
+    refute is_rotation?(string_1, string_2)
   end
 end
