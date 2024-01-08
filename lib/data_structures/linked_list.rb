@@ -10,8 +10,25 @@ end
 class LinkedList
   attr_reader :head
 
-  def initialize
+  def initialize(data = [])
     @head = nil
+
+    data.each { |x| append(x) }
+  end
+
+  def head=(new_head)
+    new_head.next = head
+    @head = new_head
+  end
+
+  def data
+    arr = []
+    node = head
+    while node
+      arr << node.data
+      node = node.next
+    end
+    arr
   end
 
   def append(data)

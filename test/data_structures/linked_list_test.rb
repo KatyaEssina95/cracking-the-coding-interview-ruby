@@ -6,6 +6,43 @@ class LinkedListTest < Minitest::Test
     @linked_list = LinkedList.new
   end
 
+  def test_initialize_with_data
+    linked_list = LinkedList.new([1, 2, 3])
+
+    assert_equal 1, linked_list.head.data
+    assert_equal 2, linked_list.head.next.data
+    assert_equal 3, linked_list.head.next.next.data
+    assert_nil linked_list.head.next.next.next
+  end
+
+  def test_initialize_without_data
+    linked_list = LinkedList.new
+
+    assert_nil linked_list.head
+  end
+
+  def test_set_head
+    @linked_list.append([1])
+    old_head = @linked_list.head
+    new_head = Node.new(2)
+
+    @linked_list.head = new_head
+
+    assert_equal new_head, @linked_list.head
+    assert old_head, new_head.next
+  end
+
+  def test_data_no_nodes
+    assert_equal [], @linked_list.data
+  end
+
+  def test_data_nodes
+    data = [1, 2, 3, 4, 5]
+    data.each { |n| @linked_list.append(n) }
+
+    assert_equal data, @linked_list.data
+  end
+
   def test_can_add_head_node
     data = 1
 
